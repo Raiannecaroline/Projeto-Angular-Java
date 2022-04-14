@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-novo-funcionario',
@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NovoFuncionarioComponent implements OnInit {
 
+  @ViewChild('fileInput')
+  fileInput!: ElementRef
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  selectInput(): void{
+    this.fileInput.nativeElement.click();
   }
 
 }

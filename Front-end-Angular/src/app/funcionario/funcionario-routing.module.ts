@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NovoFuncionarioComponent } from './pages/novo-funcionario/novo-funcionario.component';
 import { ListarFuncionarioComponent } from './pages/listar-funcionario/listar-funcionario.component';
 import { FuncionarioComponent } from './pages/funcionario/funcionario.component';
+import { IsNumberGuard } from './guards/is-number.guard';
 
 const routes: Routes = [
   {
@@ -16,7 +17,10 @@ const routes: Routes = [
   },
   {
     path: ':idFuncionario',
-    component: FuncionarioComponent
+    component: FuncionarioComponent,
+    canActivate: [
+      IsNumberGuard
+    ]
   }
 ];
 

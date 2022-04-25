@@ -10,13 +10,14 @@ import { FuncionarioHttpService } from './services/funcionario-http.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FuncionarioComponent } from './pages/funcionario/funcionario.component';
 import { IsNumberGuard } from './guards/is-number.guard';
-
+import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
 
 @NgModule({
   declarations: [
     NovoFuncionarioComponent,
     ListarFuncionarioComponent,
     FuncionarioComponent,
+    DeleteDialogComponent
   ],
   imports: [
     CommonModule,

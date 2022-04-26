@@ -1,4 +1,4 @@
-<div class="flex-container">
+<div class="flex-container column">
     <table mat-table [dataSource]="funcionarios" class="fun-table mat-elevation-z8">
       <ng-container matColumnDef="idFuncionario">
         <th mat-header-cell *matHeaderCellDef>#</th>
@@ -34,4 +34,9 @@
       <tr mat-header-row *matHeaderRowDef="columns"></tr>
       <tr mat-row *matRowDef="let row; columns: columns"></tr>
     </table>
+  
   </div>
+
+  <button mat-mini-fab class="add" color="accent" routerLink="/funcionario/novo-funcionario">
+    <mat-icon>add</mat-icon>
+  </button>

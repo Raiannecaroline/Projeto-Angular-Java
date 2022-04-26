@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { DeleteDialogComponent } from '../../components/delete-dialog/delete-dialog.component';
 import { Funcionario } from '../../models/funcionario';
 import { FuncionarioHttpService } from '../../services/funcionario-http.service';
@@ -17,23 +18,40 @@ export class ListarFuncionarioComponent implements OnInit {
 
   constructor(
     private funHttpService: FuncionarioHttpService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private snackbar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
-    this.funHttpService.getFuncionarios().subscribe(
-      (funcionarios) => {
-       this.funcionarios = funcionarios
+    this.recoverFuncionarios()
+  }
+
+  confirmaDelete(id: number){
+    const dialogRef = this.dialog.open(DeleteDialogComponent)
+
+    dialogRef.afterClosed().subscribe(
+      canDelete => {
+        if(canDelete){
+          this.funHttpService.deleteFuncionario(id)
+          .subscribe(
+            () => {
+              this.snackbar.open("Funcionário deletado", "Ok", {
+                duration: 3000,
+                horizontalPosition: 'left',
+                verticalPosition: 'top'
+              })
+              this.recoverFuncionarios()
+            }
+          )
+        }
       }
     )
   }
 
-  confirmaDelete(){
-    const dialogRef = this.dialog.open(DeleteDialogComponent)
-
-    dialogRef.afterClosed().subscribe(
-      result => {
-        console.log(result)
+  recoverFuncionarios(){
+    this.funHttpService.getFuncionarios().subscribe(
+      (funcionarios) => {
+        this.funcionarios = funcionarios
       }
     )
   }

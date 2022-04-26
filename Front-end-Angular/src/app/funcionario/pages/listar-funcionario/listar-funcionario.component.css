@@ -1,3 +1,9 @@
 .fun-table{
   width: 90%;
 }
+
+.add{
+  position: absolute;
+  right: 68px;
+  bottom: 50px;
+}

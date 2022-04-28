@@ -29,4 +29,8 @@ export class FuncionarioHttpService {
     return this.http.delete<void>(`${this.baseURL}/${id}`)
   }
 
+  addFoto(id: number, data: FormData, filename: string): Observable<void>{
+    return this.http.post<void>(`${this.baseURL}/envioFoto/${id}?nome=${filename}`, data)
+  }
+
 }

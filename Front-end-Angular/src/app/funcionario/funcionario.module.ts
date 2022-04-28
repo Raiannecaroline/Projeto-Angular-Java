@@ -11,13 +11,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FuncionarioComponent } from './pages/funcionario/funcionario.component';
 import { IsNumberGuard } from './guards/is-number.guard';
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
+import { EditFuncionarioComponent } from './pages/edit-funcionario/edit-funcionario.component';
 
 @NgModule({
   declarations: [
     NovoFuncionarioComponent,
     ListarFuncionarioComponent,
     FuncionarioComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    EditFuncionarioComponent
   ],
   imports: [
     CommonModule,

@@ -4,6 +4,7 @@ import { NovoFuncionarioComponent } from './pages/novo-funcionario/novo-funciona
 import { ListarFuncionarioComponent } from './pages/listar-funcionario/listar-funcionario.component';
 import { FuncionarioComponent } from './pages/funcionario/funcionario.component';
 import { IsNumberGuard } from './guards/is-number.guard';
+import { EditFuncionarioComponent } from './pages/edit-funcionario/edit-funcionario.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
     canActivate: [
       IsNumberGuard
     ]
+  },
+  {
+    path: 'edit/:idFuncionario',
+    component: EditFuncionarioComponent
   }
 ];
 

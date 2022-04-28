@@ -22,7 +22,7 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Ações</th>
         <td mat-cell *matCellDef="let fun">
-          <button mat-raised-button color="accent">
+          <button mat-raised-button color="accent" [routerLink]="'/funcionario/edit' + fun.idFuncionario">
             <mat-icon>edit</mat-icon>
           </button>
           <button mat-raised-button color="warn" style="margin-left: 10px;" (click)="confirmaDelete(fun.idFuncionario)">

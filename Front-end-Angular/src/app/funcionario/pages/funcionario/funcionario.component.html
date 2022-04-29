@@ -1,6 +1,6 @@
 <div class="flex-container">
-  <mat-card>
-    <img [src]="funcionario.foto" alt="" mat-card-image>
+  <mat-card *ngIf="funcionario != undefined">
+    <img [src]="funcionario.foto == null ? '/assets/no-profiler.webp' : funcionario.foto" alt="" mat-card-image class="fun-img">
     <mat-card-content>
       <mat-card-title>
         {{ funcionario.nome }}

@@ -5,11 +5,15 @@ import { ListarFuncionarioComponent } from './pages/listar-funcionario/listar-fu
 import { FuncionarioComponent } from './pages/funcionario/funcionario.component';
 import { IsNumberGuard } from './guards/is-number.guard';
 import { EditFuncionarioComponent } from './pages/edit-funcionario/edit-funcionario.component';
+import { ConfirmExitGuard } from './guards/confirm-exit.guard';
 
 const routes: Routes = [
   {
     path: 'novo-funcionario',
     component: NovoFuncionarioComponent,
+    canDeactivate: [
+      ConfirmExitGuard
+    ]
   },
   {
     path: '',

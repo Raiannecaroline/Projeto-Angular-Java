@@ -12,6 +12,7 @@ import { FuncionarioComponent } from './pages/funcionario/funcionario.component'
 import { IsNumberGuard } from './guards/is-number.guard';
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
 import { EditFuncionarioComponent } from './pages/edit-funcionario/edit-funcionario.component';
+import { ConfirmExitGuard } from './guards/confirm-exit.guard';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { EditFuncionarioComponent } from './pages/edit-funcionario/edit-funciona
   ],
   providers: [
     FuncionarioHttpService,
-    IsNumberGuard
+    IsNumberGuard,
+    ConfirmExitGuard
   ]
 })
 export class FuncionarioModule { }

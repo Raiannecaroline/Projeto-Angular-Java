@@ -2,7 +2,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { Router, UrlTree } from '@angular/router';
+import { Observable } from 'rxjs';
+import { CanDeactivate } from '../../models/CanDeactivate';
 import { FuncionarioHttpService } from '../../services/funcionario-http.service';
 
 @Component({
@@ -10,7 +12,7 @@ import { FuncionarioHttpService } from '../../services/funcionario-http.service'
   templateUrl: './novo-funcionario.component.html',
   styleUrls: ['./novo-funcionario.component.css']
 })
-export class NovoFuncionarioComponent implements OnInit {
+export class NovoFuncionarioComponent implements OnInit, CanDeactivate{
 
   @ViewChild('fileInput')
   fileInput!: ElementRef
@@ -29,6 +31,16 @@ export class NovoFuncionarioComponent implements OnInit {
     private snackbar: MatSnackBar,
     private router: Router
   ) { }
+
+
+  canDeactivate(): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+    if(this.funcionario.dirty){
+      const canExit = confirm('Você não salvou o seus dados! Deseja realmente sair?')
+      return canExit
+    }
+
+    return true
+  }
 
   ngOnInit(): void {
   }

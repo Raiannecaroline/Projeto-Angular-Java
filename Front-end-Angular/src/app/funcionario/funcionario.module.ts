@@ -13,6 +13,7 @@ import { IsNumberGuard } from './guards/is-number.guard';
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
 import { EditFuncionarioComponent } from './pages/edit-funcionario/edit-funcionario.component';
 import { ConfirmExitGuard } from './guards/confirm-exit.guard';
+import { ConfirmExitDialogComponent } from './components/confirm-exit-dialog/confirm-exit-dialog.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ConfirmExitGuard } from './guards/confirm-exit.guard';
     ListarFuncionarioComponent,
     FuncionarioComponent,
     DeleteDialogComponent,
-    EditFuncionarioComponent
+    EditFuncionarioComponent,
+    ConfirmExitDialogComponent
   ],
   imports: [
     CommonModule,

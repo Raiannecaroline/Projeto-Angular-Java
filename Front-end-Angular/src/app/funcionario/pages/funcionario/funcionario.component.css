@@ -1,3 +1,9 @@
 .fun-img{
   max-width: 400px;
 }
+
+.flex-container > button{
+  position: absolute;
+  left: 64px;
+  top: 50px;
+}

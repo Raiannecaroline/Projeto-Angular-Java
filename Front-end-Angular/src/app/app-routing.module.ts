@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: 'funcionario',
     loadChildren: () => import('./funcionario/funcionario.module').then((m) => {return m.FuncionarioModule})
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   }
 ]
 

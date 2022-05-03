@@ -33,4 +33,8 @@ export class FuncionarioHttpService {
     return this.http.post<void>(`${this.baseURL}/envioFoto/${id}?nome=${filename}`, data)
   }
 
+  update(funcionario: Funcionario): Observable<Funcionario>{
+    return this.http.put<Funcionario>(`${this.baseURL}/${funcionario.idFuncionario}`, funcionario)
+  }
+
 }

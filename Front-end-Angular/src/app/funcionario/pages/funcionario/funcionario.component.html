@@ -1,4 +1,9 @@
 <div class="flex-container">
+  <button mat-fab color="accent" routerLink="/funcionario">
+    <mat-icon>
+      keyboard_return
+    </mat-icon>
+  </button>
   <mat-card *ngIf="funcionario != undefined">
     <img [src]="funcionario.foto == null ? '/assets/no-profiler.webp' : funcionario.foto" alt="" mat-card-image class="fun-img">
     <mat-card-content>

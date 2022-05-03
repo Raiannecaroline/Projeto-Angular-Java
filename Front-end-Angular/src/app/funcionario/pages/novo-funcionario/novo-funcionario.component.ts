@@ -1,9 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
+import { ConfirmExitDialogComponent } from '../../components/confirm-exit-dialog/confirm-exit-dialog.component';
 import { CanDeactivate } from '../../models/CanDeactivate';
 import { FuncionarioHttpService } from '../../services/funcionario-http.service';
 
@@ -29,16 +31,16 @@ export class NovoFuncionarioComponent implements OnInit, CanDeactivate{
     private fb: FormBuilder,
     private funHttpService: FuncionarioHttpService,
     private snackbar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) { }
 
 
   canDeactivate(): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     if(this.funcionario.dirty){
-      const canExit = confirm('Você não salvou o seus dados! Deseja realmente sair?')
-      return canExit
+      const ref = this.dialog.open(ConfirmExitDialogComponent)
+      return ref.afterClosed()
     }
-
     return true
   }
 
@@ -68,6 +70,7 @@ export class NovoFuncionarioComponent implements OnInit, CanDeactivate{
           this.funHttpService.addFoto(fun.idFuncionario || 0, formData, filename)
           .subscribe(
             () => {
+              this.funcionario.reset()
               this.showMeSnackBarSucess()
             },
             (error: HttpErrorResponse) =>{
@@ -75,6 +78,7 @@ export class NovoFuncionarioComponent implements OnInit, CanDeactivate{
             }
           )
         } else{
+          this.funcionario.reset()
           this.showMeSnackBarSucess()
         }
 

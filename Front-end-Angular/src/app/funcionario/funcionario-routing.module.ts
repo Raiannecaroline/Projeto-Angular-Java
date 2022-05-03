@@ -29,7 +29,10 @@ const routes: Routes = [
   },
   {
     path: 'edit/:idFuncionario',
-    component: EditFuncionarioComponent
+    component: EditFuncionarioComponent,
+    canDeactivate: [
+      ConfirmExitGuard
+    ]
   }
 ];
 

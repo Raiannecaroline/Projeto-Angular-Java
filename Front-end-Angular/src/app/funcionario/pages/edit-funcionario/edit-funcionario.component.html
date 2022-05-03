@@ -1,1 +1,43 @@
-<p>edit-funcionario works!</p>
+<div class="flex-container">
+
+  <button mat-fab color="accent" routerLink="/funcionario">
+    <mat-icon>
+      keyboard_return
+    </mat-icon>
+  </button>
+  
+  <mat-card>
+    <form action="" id="main-form" [formGroup]="funcionario" (ngSubmit)="submit()">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nome do Funcionário</mat-label>
+        <input type="text" matInput formControlName="nome">
+
+        <mat-error>
+          <span>Esse campo é obrigatório</span>
+        </mat-error>
+
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>E-mail do Funcionário</mat-label>
+        <input type="email" matInput formControlName="email">
+
+        <mat-error>
+          <span *ngIf="funcionario.get('email')?.getError('required')">
+            Esse campo é obrigatório
+          </span>
+          <span *ngIf="funcionario.get('email')?.getError('email')">
+            Digite um e-mail válido
+          </span>
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="accent" type="button" class="btn" (click)="fileInput.click()">Adicionar a foto</button>
+      <input type="file" placeholder="Coloque sua foto.." id="file-input" #fileInput formControlName="foto" accept="image/*" (change)="fileChange($event)" multiple>
+      <button mat-raised-button color="accent" type="submit" style="margin-top:10px;">Cadastrar</button>
+
+    </form>
+  </mat-card>
+
+</div>

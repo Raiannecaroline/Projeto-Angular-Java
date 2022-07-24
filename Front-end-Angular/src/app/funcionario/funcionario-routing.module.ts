@@ -6,6 +6,7 @@ import { FuncionarioComponent } from './pages/funcionario/funcionario.component'
 import { IsNumberGuard } from './guards/is-number.guard';
 import { EditFuncionarioComponent } from './pages/edit-funcionario/edit-funcionario.component';
 import { ConfirmExitGuard } from './guards/confirm-exit.guard';
+import { CanEnterGuard } from './guards/can-enter.guard';
 
 const routes: Routes = [
   {
@@ -13,18 +14,25 @@ const routes: Routes = [
     component: NovoFuncionarioComponent,
     canDeactivate: [
       ConfirmExitGuard
+    ],
+    canActivate: [
+      CanEnterGuard
     ]
   },
   {
     path: '',
     pathMatch: 'full',
-    component: ListarFuncionarioComponent
+    component: ListarFuncionarioComponent,
+    canActivate: [
+      CanEnterGuard
+    ]
   },
   {
     path: ':idFuncionario',
     component: FuncionarioComponent,
     canActivate: [
-      IsNumberGuard
+      IsNumberGuard,
+      CanEnterGuard
     ]
   },
   {
@@ -32,6 +40,9 @@ const routes: Routes = [
     component: EditFuncionarioComponent,
     canDeactivate: [
       ConfirmExitGuard
+    ],
+    canActivate: [
+      CanEnterGuard
     ]
   }
 ];

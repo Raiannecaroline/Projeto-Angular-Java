@@ -35,7 +35,7 @@
 
       <button mat-raised-button color="accent" type="button" class="btn" (click)="selectInput()">Adicionar a foto</button>
       <input type="file" placeholder="Coloque sua foto.." id="file-input" #fileInput formControlName="foto" accept="image/*" (change)="fileChange($event)" multiple>
-      <button mat-raised-button color="accent" type="submit" style="margin-top:10px;">Cadastrar</button>
+      <button mat-raised-button color="accent" type="submit" style="margin-top:10px;" [disabled]="!funcionario.valid">Cadastrar</button>
 
     </form>
   </mat-card>

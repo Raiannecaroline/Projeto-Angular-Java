@@ -6,7 +6,7 @@ import { NovoFuncionarioComponent } from './pages/novo-funcionario/novo-funciona
 import { MaterialModule } from '../material/material.module';
 import { ListarFuncionarioComponent } from './pages/listar-funcionario/listar-funcionario.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FuncionarioHttpService } from './services/funcionario-http.service';
+
 import { ReactiveFormsModule } from '@angular/forms';
 import { FuncionarioComponent } from './pages/funcionario/funcionario.component';
 import { IsNumberGuard } from './guards/is-number.guard';
@@ -14,6 +14,7 @@ import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.
 import { EditFuncionarioComponent } from './pages/edit-funcionario/edit-funcionario.component';
 import { ConfirmExitGuard } from './guards/confirm-exit.guard';
 import { ConfirmExitDialogComponent } from './components/confirm-exit-dialog/confirm-exit-dialog.component';
+import { CanEnterGuard } from './guards/can-enter.guard';
 
 @NgModule({
   declarations: [
@@ -32,9 +33,9 @@ import { ConfirmExitDialogComponent } from './components/confirm-exit-dialog/con
     ReactiveFormsModule
   ],
   providers: [
-    FuncionarioHttpService,
     IsNumberGuard,
-    ConfirmExitGuard
+    ConfirmExitGuard,
+    CanEnterGuard
   ]
 })
 export class FuncionarioModule { }

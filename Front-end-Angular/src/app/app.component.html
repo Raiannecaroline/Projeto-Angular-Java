@@ -1,1 +1,11 @@
+<button mat-mini-fab 
+color="warn" 
+*ngIf="logged$" 
+(click)="logout()"
+id="logout">
+  <mat-icon>
+    logout
+  </mat-icon>
+</button>
+
 <router-outlet></router-outlet>

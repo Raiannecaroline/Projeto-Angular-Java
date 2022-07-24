@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
+import { AuthenticationService } from 'src/app/auth/services/authentication.service';
 import { ConfirmExitDialogComponent } from '../../components/confirm-exit-dialog/confirm-exit-dialog.component';
 import { CanDeactivate } from '../../models/CanDeactivate';
 import { FuncionarioHttpService } from '../../services/funcionario-http.service';
@@ -27,21 +28,34 @@ export class NovoFuncionarioComponent implements OnInit, CanDeactivate{
 
   foto!: File
 
+  private canExit!: boolean
+
   constructor(
     private fb: FormBuilder,
     private funHttpService: FuncionarioHttpService,
     private snackbar: MatSnackBar,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private authService: AuthenticationService
   ) { }
 
 
   canDeactivate(): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    if(this.funcionario.dirty){
+
+    this.authService.logged()
+    .subscribe(logged =>{
+      this.canExit = !logged
+    })
+
+    if(this.canExit){
+      return true
+
+    } else if(this.funcionario.dirty) {
       const ref = this.dialog.open(ConfirmExitDialogComponent)
+    
       return ref.afterClosed()
     }
-    return true
+    return true;
   }
 
   ngOnInit(): void {
@@ -51,7 +65,7 @@ export class NovoFuncionarioComponent implements OnInit, CanDeactivate{
     this.fileInput.nativeElement.click();
   }
 
-  submit(): void{
+  submit(): any{
     const funcionario = this.funcionario.value
     funcionario.foto = null
 

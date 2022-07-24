@@ -7,7 +7,7 @@ import { Funcionario } from '../models/funcionario';
   providedIn: 'root'
 })
 export class FuncionarioHttpService {
-  private readonly baseURL = '/servicos/funcionario'
+  private readonly baseURL = 'http://localhost:8080/servicos/funcionario'
 
   constructor(
     private http: HttpClient
